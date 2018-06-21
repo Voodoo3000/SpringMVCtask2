@@ -15,7 +15,7 @@ public class News extends EntityParent {
     private String title;
     private String brief;
     private String content;
-    private String date = String.valueOf(new Date());
+    private String date;
 
     private List<Comment> commentList = new ArrayList<>();
 
@@ -67,7 +67,7 @@ public class News extends EntityParent {
         this.date = date;
     }
 
-    @OneToMany(mappedBy="news", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="news", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     public List<Comment> getCommentList() {
         return commentList;
     }

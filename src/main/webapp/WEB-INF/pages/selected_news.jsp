@@ -30,43 +30,53 @@
         </div>
 
         <div class="col-sm-9">
-            <form:form action="/openEditMode" modelAttribute="selectedNewsModel">
+            <form:form action="/openEditMode" modelAttribute="model">
                 <h4>
                     <small>RECENT POSTS</small>
                 </h4>
                 <hr>
-                <h2>${selectedNewsModel.title}</h2>
-                <h5><span class="glyphicon glyphicon-time"></span> ${selectedNewsModel.date}
+                <h2>${model.title}</h2>
+                <h5><span class="glyphicon glyphicon-time"></span> ${model.date}
                 </h5>
                 <h5><span class="label label-danger">Incidents</span> <span
                         class="label label-primary">Cataclysms</span>
                 </h5><br>
-                <h5>${selectedNewsModel.content}</h5>
+                <h5>${model.content}</h5>
                 <div style="float:left;padding-right:8px;">
-                    <button type="submit" class="btn btn-primary" name="id" value=${selectedNewsModel.id}>Edit mode</button>
+                    <button type="submit" class="btn btn-primary" name="id" value=${model.id}>Edit mode</button>
                 </div>
             </form:form>
-            <form:form action="/deleteNews" method="post" modelAttribute="selectedNewsModel">
-                <button type="submit" class="btn btn-danger" name="id" value=${selectedNewsModel.id}>Delete</button>
+            <form:form action="/deleteNews" method="post" modelAttribute="model">
+                <button type="submit" class="btn btn-danger" name="id" value=${model.id}>Delete</button>
             </form:form>
             <hr>
-            <%--<form:form action="/addUpCommAct">--%>
-                <%--<div class="form-group">--%>
-                    <%--<html:hidden property="id" value="${newsForm.id}"/>--%>
-                    <%--<h4>Enter your login-email:</h4>--%>
-                    <%--<html:textarea name="newsForm" property="commentAuthor" rows="1" style="width: 33%; border-radius: 3px"/>--%>
-                    <%--<h4>Leave a Comment:</h4>--%>
-                    <%--<html:textarea name="newsForm" property="commentContent" rows="3" style="width: 100%; border-radius: 3px"/>--%>
-                <%--</div>--%>
-                <%--<button type="submit" class="btn btn-success" >Submit</button>--%>
-            <%--</form:form>--%>
-            <%--<hr>--%>
-            <%--<logic:iterate name="newsForm" property="formComments" id="comment">--%>
-                <%--<h5>${comment.commentAuthor}</h5>--%>
-                <%--<h6><span class="glyphicon glyphicon-time"></span>${comment.commentDate}</h6>--%>
-                <%--<h4>${comment.commentContent}</h4>--%>
-                <%--<br>--%>
-            <%--</logic:iterate>--%>
+            <form:form action="/addComment" method="post" modelAttribute="model">
+                <div class="form-group">
+                    <h4>Enter your login-email:</h4>
+                    <form:textarea path="commentAuthor" rows="1" cssStyle="width: 33%; border-radius: 3px"/>
+                    <h4>Leave a Comment:</h4>
+                    <form:textarea path="commentContent" rows="3" cssStyle="width: 100%; border-radius: 3px"/>
+                </div>
+                <button type="submit" class="btn btn-success" name="id" value=${model.id}>Submit</button>
+            </form:form>
+            <hr>
+            <c:forEach items="${model.DTOCommentList}" var="comment">
+                <div style="float:right;padding-right:16px;">
+                    <div class="checkbox-primary">
+                        <label><input name="deleteCommentCheckbox" type="checkbox" form="form1" value=${comment.id}> Deletion label</label>
+                    </div>
+                </div>
+                <h5>${comment.commentAuthor}</h5>
+                <h6><span class="glyphicon glyphicon-time"></span>${comment.commentDate}</h6>
+                <h4>${comment.commentContent}</h4>
+                <br>
+            </c:forEach>
+        </div>
+        <hr>
+        <div style="float:right;padding-right:16px; padding-bottom: 16px">
+            <form name="news" id="form1" action="/deleteCommentNews" method="post">
+                <button type="submit" class="btn btn-danger" name="newsId" value="${model.id}">Deleted selected comment</button>
+            </form>
         </div>
     </div>
 </div>
