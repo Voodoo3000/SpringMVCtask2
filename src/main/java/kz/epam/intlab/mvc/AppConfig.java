@@ -1,4 +1,4 @@
-package kz.epam.intlab.spring;
+package kz.epam.intlab.mvc;
 
 
 import org.hibernate.SessionFactory;
@@ -47,6 +47,4 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         resolver.setSuffix(".jsp");
         return resolver;
     }
-
-
 }

@@ -1,4 +1,4 @@
-package kz.epam.intlab.spring;
+package kz.epam.intlab.mvc;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -15,7 +15,7 @@ public class AppInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext container) throws ServletException {
         AnnotationConfigWebApplicationContext context
                 = new AnnotationConfigWebApplicationContext();
-        context.setConfigLocation("kz.epam.intlab.spring");
+        context.setConfigLocation("kz.epam.intlab.mvc");
 
         container.addListener(new ContextLoaderListener(context));
 

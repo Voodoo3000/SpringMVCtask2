@@ -26,9 +26,11 @@
                 <li><a href="#section3">Family</a></li>
                 <li><a href="#section3">Photos</a></li>
             </ul>
-            <br>
         </div>
-
+        <div style="float: left; padding-left: 16px">
+            <h3>Hello ${user}</h3>
+        </div>
+        <br>
         <div class="col-sm-9">
             <form:form method="post" action="/addUpNews" modelAttribute="model">
                 <h4>
@@ -63,7 +65,7 @@
 </div>
 
 <footer class="container-fluid">
-    <p align="center">KazTrulyNews</br>
+    <p align="center">TrulyNews</br>
         EPAM Systems &copy; 2018</p>
 </footer>
 

@@ -26,9 +26,11 @@
                 <li><a href="#section3">Family</a></li>
                 <li><a href="#section3">Photos</a></li>
             </ul>
-            <br>
         </div>
-
+        <div style="float: left; padding-left: 16px">
+            <h3>Hello ${user}</h3>
+        </div>
+        <br>
         <div class="col-sm-9">
             <form:form action="/openEditMode" modelAttribute="model">
                 <h4>
@@ -63,7 +65,8 @@
             <c:forEach items="${model.DTOCommentList}" var="comment">
                 <div style="float:right;padding-right:16px;">
                     <div class="checkbox-primary">
-                        <label><input name="deleteCommentCheckbox" type="checkbox" form="form1" value=${comment.id}> Deletion label</label>
+                        <label><input name="deleteCommentCheckbox" type="checkbox" form="form1" value=${comment.id}>
+                            Deletion label</label>
                     </div>
                 </div>
                 <h5>${comment.commentAuthor}</h5>
@@ -75,14 +78,18 @@
         <hr>
         <div style="float:right;padding-right:16px; padding-bottom: 16px">
             <form name="news" id="form1" action="/deleteCommentNews" method="post">
-                <button type="submit" class="btn btn-danger" name="newsId" value="${model.id}">Deleted selected comment</button>
+                <input type="hidden" name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+                <button type="submit" class="btn btn-danger" name="newsId" value="${model.id}">Deleted selected
+                    comment
+                </button>
             </form>
         </div>
     </div>
 </div>
 
 <footer class="container-fluid">
-    <p align="center">KazTrulyNews</br>
+    <p align="center">TrulyNews</br>
         EPAM Systems &copy; 2018</p>
 </footer>
 

@@ -1,4 +1,4 @@
-<%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,41 +28,62 @@
                 <li><a href="#section3">Life</a></li>
             </ul>
         </div>
-        <br>
-        <%--<div style="float:left;padding-right:8px;padding-left:16px;">--%>
-            <%--<html:link page="/locale.do?method=english">English</html:link>--%>
-        <%--</div>--%>
-        <%--<html:link page="/locale.do?method=russian">Russian</html:link>--%>
-        <div style="float:right;padding-right:16px;">
-            <a href='<c:url value="/openAddNews"/>' type="button" class="btn btn-success">Add News</a>
+        <div style="float: left; padding-left: 14px">
+            <h3>Hello ${user}</h3>
         </div>
+        <br>
+        <div>
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                <div style="float:right; padding-right:24px">
+                    <c:url var="logoutUrl" value="/logout"/>
+                    <form action="${logoutUrl}" id="logout" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}"
+                               value="${_csrf.token}"/>
+                        <input class="btn btn-primary" type="submit" name="submit" value="Log Out">
+                    </form>
+                </div>
+                <div style="float:right; padding-right:32px">
+                    <a href='<c:url value="/openAddNews"/>' type="button" class="btn btn-success">Add News</a>
+                </div>
+            </c:if>
+            <c:if test="${pageContext.request.userPrincipal.name == null}">
+                <div style="float:right; padding-right:24px;">
+                    <a href='<c:url value="/openLoginPage"/>' type="button" class="btn btn-primary">Sign In</a>
+                </div>
+            </c:if>
+        </div>
+
         <div class="col-sm-9">
-           <c:forEach items="${newsMap}" var="entry">
-               <form:form method="get" action="/openSelectedNews">
+            <c:forEach items="${newsMap}" var="entry">
+                <form:form method="get" action="/openSelectedNews">
                     <h4>
                         <small>RECENT POSTS</small>
                     </h4>
                     <hr>
                     <div style="float:right;padding-right:16px;">
                         <div class="checkbox-primary">
-                            <label><input name="deleteNewsCheckbox" type="checkbox" form="form1" value=${entry.value.id}> Deletion label</label>
+                            <label><input name="deleteNewsCheckbox" type="checkbox" form="form1"
+                                          value=${entry.value.id}> Deletion label</label>
                         </div>
                     </div>
                     <h2>${entry.value.title}</h2>
                     <h5><span class="glyphicon glyphicon-time"></span> ${entry.value.date}
                     </h5>
-                    <h5><span class="label label-danger">Incidents</span> <span class="label label-primary">Cataclysms</span>
+                    <h5><span class="label label-danger">Incidents</span> <span
+                            class="label label-primary">Cataclysms</span>
                     </h5><br>
                     <h5>${entry.value.brief}</h5>
                     <input type="hidden" name="id" value="${entry.value.id}"/>
                     <button type="submit" class="btn btn-info">Read more</button>
                     <br><br>
-               </form:form>
-           </c:forEach>
+                </form:form>
+            </c:forEach>
             <hr>
         </div>
         <div style="float:right;padding-right:16px; padding-bottom: 16px">
             <form name="news" id="form1" action="/deleteSelectedNews" method="post">
+                <input type="hidden" name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
                 <button type="submit" class="btn btn-danger">Deleted selected news</button>
             </form>
         </div>
@@ -70,7 +91,7 @@
 </div>
 
 <footer class="container-fluid">
-    <p align="center">KazTrulyNews</br>
+    <p align="center">TrulyNews</br>
         EPAM Systems &copy; 2018</p>
 </footer>
 
