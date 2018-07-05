@@ -5,6 +5,7 @@ import kz.epam.intlab.entity.News;
 import java.util.List;
 import java.util.Map;
 
+
 public interface Dao {
 
     void addUpdateNews(News newsBean) throws DaoException;

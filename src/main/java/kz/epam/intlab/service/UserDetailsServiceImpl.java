@@ -21,15 +21,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserDao dao;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         kz.epam.intlab.entity.User user = null;
         List<GrantedAuthority> listOfAuthority = new ArrayList<>();
         try {
-            user = dao.getUserByEmail(username);
+            user = dao.getUserByEmail(email);
         } catch (DaoException e) {
             e.printStackTrace();
         }
         listOfAuthority.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
-        return new User(user.getUsername(), user.getPassword(), true, true, true, true, listOfAuthority);
+        return new User(user.getEmail(), user.getPassword(), true, true, true, true, listOfAuthority);
     }
 }

@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
 
     <title>Signin Template for Bootstrap</title>
 
@@ -31,8 +30,8 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                <label for="Username" class="sr-only">Username</label>
-                <input type="text" id="Username" name="username" class="form-control" placeholder="Email address" required autofocus>
+                <label for="Email" class="sr-only">Email</label>
+                <input type="email" id="Email" name="email" class="form-control" placeholder="Email address" required autofocus>
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
                 <input class="btn btn-lg btn-primary btn-block" name="submit" type="submit" value="submit">Sign in</input>

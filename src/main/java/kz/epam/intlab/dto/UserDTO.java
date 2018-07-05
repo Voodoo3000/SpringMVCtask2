@@ -1,29 +1,16 @@
-package kz.epam.intlab.entity;
+package kz.epam.intlab.dto;
 
+import kz.epam.intlab.entity.User;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
-
-@Entity
-@Table(name = "NEWS_USER")
-public class User extends EntityParent {
+public class UserDTO extends ParentDTO {
 
     private int id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-    private Role role;
+    private User.Role role;
 
-    public enum Role {
-        ADMIN, READER
-    }
-
-    @Id
-    @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
-    @Column(name = "ID")
     public int getId() {
         return id;
     }
@@ -32,7 +19,6 @@ public class User extends EntityParent {
         this.id = id;
     }
 
-    @Column(name = "FIRSTNAME")
     public String getFirstName() {
         return firstName;
     }
@@ -41,7 +27,6 @@ public class User extends EntityParent {
         this.firstName = firstName;
     }
 
-    @Column(name = "LASTNAME")
     public String getLastName() {
         return lastName;
     }
@@ -50,7 +35,6 @@ public class User extends EntityParent {
         this.lastName = lastName;
     }
 
-    @Column(name = "EMAIL")
     public String getEmail() {
         return email;
     }
@@ -59,7 +43,6 @@ public class User extends EntityParent {
         this.email = email;
     }
 
-    @Column(name = "PASSWORD")
     public String getPassword() {
         return password;
     }
@@ -68,13 +51,11 @@ public class User extends EntityParent {
         this.password = password;
     }
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "ROLE")
-    public Role getRole() {
+    public User.Role getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(User.Role role) {
         this.role = role;
     }
 }

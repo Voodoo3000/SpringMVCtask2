@@ -32,7 +32,7 @@
         </div>
         <br>
         <div class="col-sm-9">
-            <form:form method="post" action="/addUpNews" modelAttribute="model">
+            <form:form method="post" action="/addUpNews" modelAttribute="newsModel">
                 <h4>
                     <medium>Add/Edit mode</medium>
                 </h4>
@@ -57,7 +57,7 @@
                 </div>
                 <form:textarea path="content" rows="20" style="width: 100%; border-radius: 3px"/>
 
-                <button type="submit" class="btn btn-primary" name="id" value="${model.id}">Add/Edit news</button>
+                <button type="submit" class="btn btn-primary" name="id" value="${newsModel.id}">Add/Edit news</button>
                 <br><br>
             </form:form>
         </div>

@@ -42,11 +42,16 @@
                         <input class="btn btn-primary" type="submit" name="submit" value="Log Out">
                     </form>
                 </div>
+            </c:if>
+            <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
                 <div style="float:right; padding-right:32px">
                     <a href='<c:url value="/openAddNews"/>' type="button" class="btn btn-success">Add News</a>
                 </div>
             </c:if>
             <c:if test="${pageContext.request.userPrincipal.name == null}">
+                <div style="float:right; padding-right:24px;">
+                    <a href='<c:url value="/openRegisterPage"/>' type="button" class="btn btn-primary">Sign Up</a>
+                </div>
                 <div style="float:right; padding-right:24px;">
                     <a href='<c:url value="/openLoginPage"/>' type="button" class="btn btn-primary">Sign In</a>
                 </div>
@@ -61,10 +66,12 @@
                     </h4>
                     <hr>
                     <div style="float:right;padding-right:16px;">
+                        <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
                         <div class="checkbox-primary">
                             <label><input name="deleteNewsCheckbox" type="checkbox" form="form1"
                                           value=${entry.value.id}> Deletion label</label>
                         </div>
+                        </c:if>
                     </div>
                     <h2>${entry.value.title}</h2>
                     <h5><span class="glyphicon glyphicon-time"></span> ${entry.value.date}
@@ -81,11 +88,13 @@
             <hr>
         </div>
         <div style="float:right;padding-right:16px; padding-bottom: 16px">
+            <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
             <form name="news" id="form1" action="/deleteSelectedNews" method="post">
                 <input type="hidden" name="${_csrf.parameterName}"
                        value="${_csrf.token}"/>
                 <button type="submit" class="btn btn-danger">Deleted selected news</button>
             </form>
+            </c:if>
         </div>
     </div>
 </div>
