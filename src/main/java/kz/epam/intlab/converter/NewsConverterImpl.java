@@ -3,9 +3,10 @@ package kz.epam.intlab.converter;
 import kz.epam.intlab.dto.NewsDTO;
 import kz.epam.intlab.entity.Comment;
 import kz.epam.intlab.entity.News;
-import org.springframework.stereotype.Component;
 
-@Component("newsConverter")
+import javax.ejb.Stateless;
+
+@Stateless
 public class NewsConverterImpl implements DTOEntityConverter<News, NewsDTO> {
 
     @Override

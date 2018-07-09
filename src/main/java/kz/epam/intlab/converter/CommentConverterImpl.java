@@ -2,9 +2,10 @@ package kz.epam.intlab.converter;
 
 import kz.epam.intlab.dto.CommentDTO;
 import kz.epam.intlab.entity.Comment;
-import org.springframework.stereotype.Component;
 
-@Component("commentConverter")
+import javax.ejb.Stateless;
+
+@Stateless
 public class CommentConverterImpl implements DTOEntityConverter<Comment, CommentDTO> {
 
     @Override

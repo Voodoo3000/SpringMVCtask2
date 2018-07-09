@@ -2,9 +2,10 @@ package kz.epam.intlab.converter;
 
 import kz.epam.intlab.dto.UserDTO;
 import kz.epam.intlab.entity.User;
-import org.springframework.stereotype.Component;
 
-@Component("userConverter")
+import javax.ejb.Stateless;
+
+@Stateless
 public class UserConverterImpl implements DTOEntityConverter<User, UserDTO> {
 
     public User convertDTOToEntity(UserDTO userDTO) {

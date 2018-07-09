@@ -24,7 +24,7 @@
     <div class="col-5"></div>
     <div class="col-2">
         <a title="TrulyNews" href='<c:url value="/main"/>'>
-            <img height="90px" src="/static/pics/truly.png">
+            <img height="90px" src="static/pics/truly.png">
         </a>
             <form name='f' action="/openLogin" method="post">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

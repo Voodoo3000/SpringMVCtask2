@@ -1,23 +1,25 @@
 package kz.epam.intlab.dao;
 
 import kz.epam.intlab.entity.User;
+import kz.epam.intlab.util.SessionFactoryBean;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
+@Stateless
 public class UserDao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    @EJB
+    private SessionFactoryBean sessionFactoryBean;
 
     private Session session;
 
     public User getUserByEmail(String email) throws DaoException {
         try {
-            session = sessionFactory.openSession();
+            session = sessionFactoryBean.getSessionFactory().openSession();
             session.beginTransaction();
             User result = (User) session.createQuery("from User where email=:email").setParameter("email", email).uniqueResult();
             session.getTransaction().commit();
@@ -30,7 +32,7 @@ public class UserDao {
 
     public void addUpdateUser(User user) throws DaoException {
         try {
-            session = sessionFactory.openSession();
+            session = sessionFactoryBean.getSessionFactory().openSession();
             session.beginTransaction();
             if (user.getId() != 0) {
                 session.update(user);

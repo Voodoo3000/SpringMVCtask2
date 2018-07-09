@@ -6,8 +6,10 @@ import kz.epam.intlab.dto.NewsDTO;
 import kz.epam.intlab.dto.UserDTO;
 import kz.epam.intlab.entity.News;
 
+import javax.ejb.Local;
 import java.util.Map;
 
+@Local
 public interface Service {
     public Map<Integer, News> getAllNews();
     public void addUpdateNews(NewsDTO newsModel) throws DaoException;

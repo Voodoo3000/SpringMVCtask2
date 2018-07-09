@@ -3,19 +3,22 @@ package kz.epam.intlab.util;
 import kz.epam.intlab.dao.DaoException;
 import kz.epam.intlab.dto.UserDTO;
 import kz.epam.intlab.service.Service;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-@Component
-public class Validator {
+@Stateless
+public class UserCredentialValidator {
 
-    @Autowired
     private Service service;
 
+    @Inject
+    public void setService(Service service) {
+        this.service = service;
+    }
     public List<String> validateUser(UserDTO userDTO, String rePassword) throws DaoException {
 
         List<String> errorMessages = new ArrayList<>();

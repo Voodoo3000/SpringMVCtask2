@@ -1,6 +1,7 @@
 package kz.epam.intlab.service;
 
 import kz.epam.intlab.converter.DTOEntityConverter;
+import kz.epam.intlab.dao.Dao;
 import kz.epam.intlab.dao.DaoException;
 import kz.epam.intlab.dao.NewsDao;
 import kz.epam.intlab.dao.UserDao;
@@ -10,31 +11,30 @@ import kz.epam.intlab.dto.UserDTO;
 import kz.epam.intlab.entity.Comment;
 import kz.epam.intlab.entity.News;
 import kz.epam.intlab.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 
-
+import javax.ejb.*;
+import javax.inject.Inject;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Stateless
+@Local(Service.class)
 public class ServiceImpl implements Service {
 
-    @Autowired
+    @EJB
     private UserDao userDao;
-    @Autowired
-    private NewsDao newsDao;
-    @Autowired
-    @Qualifier("newsConverter")
+
+    @EJB
+    private Dao newsDao;
+
+    @EJB(beanName = "NewsConverterImpl")
     private DTOEntityConverter newsConverter;
-    @Autowired
-    @Qualifier("commentConverter")
+
+    @EJB(beanName = "CommentConverterImpl")
     private DTOEntityConverter commentConverter;
 
-    @Autowired
-    @Qualifier("userConverter")
+    @EJB(beanName = "UserConverterImpl")
     private DTOEntityConverter userConverter;
 
     @Override

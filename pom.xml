@@ -28,38 +28,51 @@
     </dependency>
 
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <version>5.0.7.RELEASE</version>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.5</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.1</version>
+      <scope>provided</scope>
     </dependency>
 
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-core</artifactId>
-      <version>5.0.6.RELEASE</version>
-    </dependency>
-    <dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-webmvc</artifactId>-->
+      <!--<version>5.0.7.RELEASE</version>-->
+    <!--</dependency>-->
+
+    <!--<dependency>-->
+      <!--<groupId>org.springframework.security</groupId>-->
+      <!--<artifactId>spring-security-core</artifactId>-->
+      <!--<version>5.0.6.RELEASE</version>-->
+    <!--</dependency>-->
+    <!--<dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
       <version>5.0.6.RELEASE</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-config</artifactId>
-      <version>5.0.6.RELEASE</version>
-    </dependency>
+    </dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.springframework.security</groupId>-->
+      <!--<artifactId>spring-security-config</artifactId>-->
+      <!--<version>5.0.6.RELEASE</version>-->
+    <!--</dependency>-->
 
     <!--<dependency>-->
       <!--<groupId>javaee</groupId>-->
       <!--<artifactId>javaee-api</artifactId>-->
       <!--<version>5</version>-->
     <!--</dependency>-->
-    <!--<dependency>-->
-      <!--<groupId>javax</groupId>-->
-      <!--<artifactId>javaee-web-api</artifactId>-->
-      <!--<version>6.0</version>-->
-      <!--<scope>provided</scope>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-web-api</artifactId>
+      <version>6.0</version>
+      <scope>provided</scope>
+    </dependency>
 
     <dependency>
       <groupId>jstl</groupId>
@@ -70,6 +83,12 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
       <version>5.2.17.Final</version>
+        <exclusions>
+            <exclusion>
+                <artifactId>jboss-logging</artifactId>
+                <groupId>org.jboss.logging</groupId>
+            </exclusion>
+        </exclusions>
     </dependency>
     <dependency>
       <groupId>com.oracle</groupId>
@@ -96,11 +115,6 @@
       <artifactId>activation</artifactId>
       <version>1.1.1</version>
     </dependency>
-      <dependency>
-          <groupId>javax.servlet</groupId>
-          <artifactId>javax.servlet-api</artifactId>
-          <version>3.1.0</version>
-      </dependency>
 
   </dependencies>
 

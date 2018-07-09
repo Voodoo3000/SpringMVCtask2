@@ -1,12 +1,12 @@
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>TrulyNews</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/static/css/page-style.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="static/css/page-style.css" rel="stylesheet" type="text/css" media="screen"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -18,7 +18,7 @@
     <div class="row content">
         <div class="col-sm-3 sidenav">
             <a title="TrulyNews" href='<c:url value="/main"/>'>
-                <img height="130px" src="/static/pics/truly.png">
+                <img src="static/pics/truly.png" height="130px">
             </a>
             <hr>
             <ul class="nav nav-pills nav-stacked">
@@ -60,7 +60,7 @@
 
         <div class="col-sm-9">
             <c:forEach items="${newsMap}" var="entry">
-                <form:form method="get" action="/openSelectedNews">
+                <form method="get" action="/openSelectedNews">
                     <h4>
                         <small>RECENT POSTS</small>
                     </h4>
@@ -83,7 +83,7 @@
                     <input type="hidden" name="id" value="${entry.value.id}"/>
                     <button type="submit" class="btn btn-info">Read more</button>
                     <br><br>
-                </form:form>
+                </form>
             </c:forEach>
             <hr>
         </div>
