@@ -6,10 +6,12 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
+@LocalBean
 public class UserDao {
 
     @EJB

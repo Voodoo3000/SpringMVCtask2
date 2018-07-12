@@ -1,31 +1,34 @@
 package kz.epam.intlab.service;
 
 import kz.epam.intlab.dao.DaoException;
-import kz.epam.intlab.dao.UserDao;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-import javax.inject.Inject;
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Service("userDetailsServiceImpl")
-public class UserDetailsServiceImpl  {
+@Service("userDetailsServiceImpl")
+public class UserDetailsServiceImpl implements UserDetailsService {
 
-//    private UserDao userDao;
-//    @Inject
-//    public void setUserDao(UserDao userDao) {
-//        this.userDao = userDao;
-//    }
-//
-//    @Override
-//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//        kz.epam.intlab.entity.User user = null;
-//        List<GrantedAuthority> listOfAuthority = new ArrayList<>();
-//        try {
-//            user = userDao.getUserByEmail(email);
-//        } catch (DaoException e) {
-//            e.printStackTrace();
-//        }
-//        listOfAuthority.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
-//        return new User(user.getEmail(), user.getPassword(), true, true, true, true, listOfAuthority);
-//    }
+    @Resource(lookup = "kz/epam/intlab/service/ServiceImpl")
+    private kz.epam.intlab.service.Service service;
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        kz.epam.intlab.dto.UserDTO userDTO = null;
+        List<GrantedAuthority> listOfAuthority = new ArrayList<>();
+        try {
+            userDTO = service.getUserByEmail(email);
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+        listOfAuthority.add(new SimpleGrantedAuthority("ROLE_" + userDTO.getRole()));
+        return new User(userDTO.getEmail(), userDTO.getPassword(), true, true, true, true, listOfAuthority);
+    }
 }
