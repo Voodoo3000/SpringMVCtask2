@@ -9,11 +9,11 @@ import java.util.Map;
 @Local
 public interface Dao {
 
-    void addUpdateNews(News newsBean) throws DaoException;
+    News addUpdateNews(News news) throws DaoException;
 
     Map<Integer, News> getAllNews();
 
     News getNewsById(Integer id) throws DaoException;
 
-    void deleteNews(News newsBean) throws DaoException;
+    void deleteNews(News news) throws DaoException;
 }

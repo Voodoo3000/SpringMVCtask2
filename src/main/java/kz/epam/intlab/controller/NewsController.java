@@ -33,8 +33,8 @@ public class NewsController {
 //    }
 //
 //    @RequestMapping(value = "/addUpNews", method = RequestMethod.POST)
-//    public String addUpdateNews(@ModelAttribute NewsDTO newsModel) throws DaoException {
-//        service.addUpdateNews(newsModel);
+//    public String AddUpdateNews(@ModelAttribute NewsDTO newsModel) throws DaoException {
+//        service.AddUpdateNews(newsModel);
 //        return "redirect:main";
 //    }
 //

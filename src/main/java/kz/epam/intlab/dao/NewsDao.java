@@ -55,8 +55,22 @@ public class NewsDao implements Dao {
         }
     }
 
+    public News getNewsByLastId() throws DaoException {
+        try {
+            session = sessionFactoryBean.getSessionFactory().openSession();
+            session.beginTransaction();
+            News result = (News) session.createQuery("select max(NEWS_ID) from News");
+            session.getTransaction().commit();
+            session.close();
+            return result;
+        } catch (HibernateException e) {
+            //LOGGER.error("HibernateException in getNewsById", e);
+            throw new DaoException();
+        }
+    }
+
     @Override
-    public void addUpdateNews(News news) throws DaoException {
+    public News addUpdateNews(News news) throws DaoException {
         try {
         session = sessionFactoryBean.getSessionFactory().openSession();
         session.beginTransaction();
@@ -66,9 +80,10 @@ public class NewsDao implements Dao {
         session.getTransaction().commit();
         session.close();
         } catch (HibernateException e) {
-            //LOGGER.error("HibernateException in addUpdateNews", e);
+            //LOGGER.error("HibernateException in AddUpdateNews", e);
             throw new DaoException();
         }
+        return news;
     }
 
     @Override

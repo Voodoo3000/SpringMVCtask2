@@ -1,4 +1,4 @@
-package kz.epam.intlab.controller;
+package kz.epam.intlab.actionServlet;
 
 import kz.epam.intlab.service.Service;
 
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/main")
-public class OpenMainPageAction extends HttpServlet {
+public class OpenMainPage extends HttpServlet {
 
     @EJB
     private Service service;
@@ -22,10 +22,7 @@ public class OpenMainPageAction extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.setAttribute("newsMap", service.getAllNews());
-        System.out.println(service);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/pages/main.jsp");
-        requestDispatcher.forward(req, resp);
-//        req.getRequestDispatcher("/WEB-INF/pages/main.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/main.jsp").forward(req, resp);
     }
 }

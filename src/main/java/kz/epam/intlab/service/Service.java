@@ -12,7 +12,7 @@ import java.util.Map;
 @Local
 public interface Service {
     public Map<Integer, News> getAllNews();
-    public void addUpdateNews(NewsDTO newsModel) throws DaoException;
+    public NewsDTO addUpdateNews(NewsDTO newsModel) throws DaoException;
     public NewsDTO getNewsById(int id) throws DaoException;
     public void deleteNews(int id) throws DaoException;
     public void addComment(CommentDTO commentModel, int id) throws DaoException;

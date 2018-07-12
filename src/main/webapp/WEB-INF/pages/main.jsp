@@ -43,11 +43,11 @@
                     </form>
                 </div>
             </c:if>
-            <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
+            <%--<c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">--%>
                 <div style="float:right; padding-right:32px">
                     <a href='<c:url value="/openAddNews"/>' type="button" class="btn btn-success">Add News</a>
                 </div>
-            </c:if>
+            <%--</c:if>--%>
             <c:if test="${pageContext.request.userPrincipal.name == null}">
                 <div style="float:right; padding-right:24px;">
                     <a href='<c:url value="/openRegisterPage"/>' type="button" class="btn btn-primary">Sign Up</a>
@@ -60,18 +60,18 @@
 
         <div class="col-sm-9">
             <c:forEach items="${newsMap}" var="entry">
-                <form method="get" action="/openSelectedNews">
+                <form method="post" action="/openSelectedNews">
                     <h4>
                         <small>RECENT POSTS</small>
                     </h4>
                     <hr>
                     <div style="float:right;padding-right:16px;">
-                        <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
+                        <%--<c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">--%>
                         <div class="checkbox-primary">
                             <label><input name="deleteNewsCheckbox" type="checkbox" form="form1"
                                           value=${entry.value.id}> Deletion label</label>
                         </div>
-                        </c:if>
+                        <%--</c:if>--%>
                     </div>
                     <h2>${entry.value.title}</h2>
                     <h5><span class="glyphicon glyphicon-time"></span> ${entry.value.date}
@@ -80,7 +80,7 @@
                             class="label label-primary">Cataclysms</span>
                     </h5><br>
                     <h5>${entry.value.brief}</h5>
-                    <input type="hidden" name="id" value="${entry.value.id}"/>
+                    <input type="hidden" name="newsId" value="${entry.value.id}"/>
                     <button type="submit" class="btn btn-info">Read more</button>
                     <br><br>
                 </form>
@@ -88,13 +88,13 @@
             <hr>
         </div>
         <div style="float:right;padding-right:16px; padding-bottom: 16px">
-            <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
-            <form name="news" id="form1" action="/deleteSelectedNews" method="post">
+            <%--<c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">--%>
+            <form name="news" id="form1" action="/deleteNews" method="post">
                 <input type="hidden" name="${_csrf.parameterName}"
                        value="${_csrf.token}"/>
                 <button type="submit" class="btn btn-danger">Deleted selected news</button>
             </form>
-            </c:if>
+            <%--</c:if>--%>
         </div>
     </div>
 </div>

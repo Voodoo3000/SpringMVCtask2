@@ -43,8 +43,9 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public void addUpdateNews(NewsDTO newsModel) throws DaoException {
-        newsDao.addUpdateNews((News) newsConverter.convertDTOToEntity(newsModel));
+    public NewsDTO addUpdateNews(NewsDTO newsModel) throws DaoException {
+        News news = newsDao.addUpdateNews((News) newsConverter.convertDTOToEntity(newsModel));
+        return (NewsDTO) newsConverter.convertEntityToDTO(news);
     }
 
     @Override

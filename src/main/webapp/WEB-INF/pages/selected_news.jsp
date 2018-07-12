@@ -31,7 +31,7 @@
         </div>
         <br>
         <div class="col-sm-9">
-            <form:form action="/openEditMode" modelAttribute="newsModel">
+            <form action="/openEditMode" method="get">
                 <h4>
                     <small>RECENT POSTS</small>
                 </h4>
@@ -44,38 +44,38 @@
                 </h5><br>
                 <h5>${newsModel.content}</h5>
                 <hr>
-                <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
+                <%--<c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">--%>
                     <div style="float:left;padding-right:8px;">
-                        <button type="submit" class="btn btn-primary" name="id" value=${newsModel.id}>Edit mode</button>
+                        <button type="submit" class="btn btn-primary" name="newsId" value=${newsModel.id}>Edit mode</button>
                     </div>
-                </c:if>
-            </form:form>
-            <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
-                <form:form action="/deleteNews" method="post" modelAttribute="newsModel">
-                    <button type="submit" class="btn btn-danger" name="id" value=${newsModel.id}>Delete</button>
-                </form:form>
+                <%--</c:if>--%>
+            </form>
+            <%--<c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">--%>
+                <form action="/deleteNews" method="post">
+                    <button type="submit" class="btn btn-danger" name="newsIdForDel" value=${newsModel.id}>Delete</button>
+                </form>
                 <hr>
-            </c:if>
-            <c:if test="${pageContext.request.isUserInRole('ROLE_READER')}">
-                <form:form action="/addComment" method="post" modelAttribute="commentModel">
+            <%--</c:if>--%>
+            <%--<c:if test="${pageContext.request.isUserInRole('ROLE_READER')}">--%>
+                <form action="/addComment" method="post">
                     <div class="form-group">
                         <h4>Enter your login-email:</h4>
-                        <form:textarea path="commentAuthor" rows="1" cssStyle="width: 33%; border-radius: 3px"/>
+                        <textarea name="commentAuthor" style="width: 33%; border-radius: 3px" rows="1" required></textarea>
                         <h4>Leave a Comment:</h4>
-                        <form:textarea path="commentContent" rows="3" cssStyle="width: 100%; border-radius: 3px"/>
+                        <textarea name="commentContent" style="width: 100%; border-radius: 3px" rows="3" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-success" name="newsId" value=${newsModel.id}>Submit</button>
-                </form:form>
+                </form>
                 <hr>
-            </c:if>
+            <%--</c:if>--%>
             <c:forEach items="${newsModel.DTOCommentList}" var="comment">
                 <div style="float:right;padding-right:16px;">
-                    <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
+                    <%--<c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">--%>
                         <div class="checkbox-primary">
                             <label><input name="deleteCommentCheckbox" type="checkbox" form="form1" value=${comment.id}>
                                 Deletion label</label>
                         </div>
-                    </c:if>
+                    <%--</c:if>--%>
                 </div>
                 <h5>${comment.commentAuthor}</h5>
                 <h6><span class="glyphicon glyphicon-time"></span>${comment.commentDate}</h6>
@@ -83,8 +83,7 @@
                 <br>
             </c:forEach>
         </div>
-        <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
-
+        <%--<c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">--%>
             <div style="float:right;padding-right:16px; padding-bottom: 16px">
                 <form name="news" id="form1" action="/deleteComment" method="post">
                     <input type="hidden" name="${_csrf.parameterName}"
@@ -94,7 +93,7 @@
                     </button>
                 </form>
             </div>
-        </c:if>
+        <%--</c:if>--%>
     </div>
 </div>
 

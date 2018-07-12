@@ -1,5 +1,4 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,34 +31,33 @@
         </div>
         <br>
         <div class="col-sm-9">
-            <form:form method="post" action="/addUpNews" modelAttribute="newsModel">
+            <form method="post" action="/addUpNews">
                 <h4>
                     <medium>Add/Edit mode</medium>
                 </h4>
                 <hr>
                 <div>
-                    <form:label path="date">Edit news date</form:label>
+                    <h5>Edit news date:</h5>
                 </div>
-                <form:textarea path="date" rows="1" cssStyle="width: 100%; border-radius: 3px"/>
+                <textarea name="date" rows="1" style="width: 100%; border-radius: 3px" required>${newsModel.date}</textarea>
                 <hr>
                 <div>
-                    <form:label path="title">Edit news title</form:label>
+                    <h5>Edit news title:</h5>
                 </div>
-                <form:textarea path="title" rows="2" cssStyle="width: 100%; border-radius: 3px"/>
+                <textarea name="title" rows="2" style="width: 100%; border-radius: 3px" required>${newsModel.title}</textarea>
                 <hr>
                 <div>
-                    <form:label path="brief">Edit news brief</form:label>
+                    <h5>Edit news brief:</h5>
                 </div>
-                <form:textarea path="brief" rows="3" cssStyle="width: 100%; border-radius: 3px"/>
+                <textarea name="brief" rows="3" style="width: 100%; border-radius: 3px" required>${newsModel.brief}</textarea>
                 <hr>
                 <div>
-                    <form:label path="content">Edit news content</form:label>
+                    <h5>Edit news content:</h5>
                 </div>
-                <form:textarea path="content" rows="20" style="width: 100%; border-radius: 3px"/>
-
-                <button type="submit" class="btn btn-primary" name="id" value="${newsModel.id}">Add/Edit news</button>
+                <textarea name="content" rows="20" style="width: 100%; border-radius: 3px">${newsModel.content}</textarea>
+                <button type="submit" class="btn btn-primary" name="newsId" value="${newsModel.id}">Add/Edit news</button>
                 <br><br>
-            </form:form>
+            </form>
         </div>
     </div>
 </div>
