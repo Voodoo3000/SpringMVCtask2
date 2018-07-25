@@ -4,6 +4,7 @@ package kz.epam.intlab.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "NEWS_USER")

@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "NEWS_COMMENT")
@@ -66,6 +67,7 @@ public class Comment extends EntityParent {
         this.commentContent = commentContent;
     }
 
+    @XmlTransient
     @ManyToOne
     @JoinColumn(name = "NEWS_ID", insertable = false, updatable = false, nullable = false)
     public News getNews() {
@@ -76,15 +78,4 @@ public class Comment extends EntityParent {
         this.news = news;
     }
 
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "id=" + id +
-                ", newsId=" + newsId +
-                ", commentDate='" + commentDate + '\'' +
-                ", commentAuthor='" + commentAuthor + '\'' +
-                ", commentContent='" + commentContent + '\'' +
-                ", news=" + news +
-                '}';
-    }
 }

@@ -1,4 +1,4 @@
-package kz.epam.intlab.actionServlet;
+package kz.epam.intlab.actionServlet.newsAction;
 
 import kz.epam.intlab.dao.DaoException;
 import kz.epam.intlab.service.Service;

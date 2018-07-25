@@ -32,6 +32,19 @@ public class UserDao {
         }
     }
 
+    public User getUserById(int id) throws DaoException {
+        try {
+            session = sessionFactoryBean.getSessionFactory().openSession();
+            session.beginTransaction();
+            User result = (User) session.createQuery("from User where id=:id").setParameter("id", id).uniqueResult();
+            session.getTransaction().commit();
+            session.close();
+            return result;
+        } catch (HibernateException e) {
+            throw new DaoException();
+        }
+    }
+
     public void addUpdateUser(User user) throws DaoException {
         try {
             session = sessionFactoryBean.getSessionFactory().openSession();

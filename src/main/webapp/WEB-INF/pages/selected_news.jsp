@@ -44,19 +44,19 @@
                 </h5><br>
                 <h5>${newsModel.content}</h5>
                 <hr>
-                <%--<c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">--%>
+                <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
                     <div style="float:left;padding-right:8px;">
                         <button type="submit" class="btn btn-primary" name="newsId" value=${newsModel.id}>Edit mode</button>
                     </div>
-                <%--</c:if>--%>
+                </c:if>
             </form>
-            <%--<c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">--%>
+            <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
                 <form action="/deleteNews" method="post">
                     <button type="submit" class="btn btn-danger" name="newsIdForDel" value=${newsModel.id}>Delete</button>
                 </form>
                 <hr>
-            <%--</c:if>--%>
-            <%--<c:if test="${pageContext.request.isUserInRole('ROLE_READER')}">--%>
+            </c:if>
+            <c:if test="${pageContext.request.isUserInRole('ROLE_READER')}">
                 <form action="/addComment" method="post">
                     <div class="form-group">
                         <h4>Enter your login-email:</h4>
@@ -65,25 +65,27 @@
                         <textarea name="commentContent" style="width: 100%; border-radius: 3px" rows="3" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-success" name="newsId" value=${newsModel.id}>Submit</button>
+                    <input type="hidden" name="${_csrf.parameterName}"
+                           value="${_csrf.token}"/>
                 </form>
                 <hr>
-            <%--</c:if>--%>
-            <c:forEach items="${newsModel.DTOCommentList}" var="comment">
+            </c:if>
+            <c:forEach items="${newsModel.DTOCommentList}" var="commentDTO">
                 <div style="float:right;padding-right:16px;">
-                    <%--<c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">--%>
+                    <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
                         <div class="checkbox-primary">
-                            <label><input name="deleteCommentCheckbox" type="checkbox" form="form1" value=${comment.id}>
+                            <label><input name="deleteCommentCheckbox" type="checkbox" form="form1" value=${commentDTO.commentId}>
                                 Deletion label</label>
                         </div>
-                    <%--</c:if>--%>
+                    </c:if>
                 </div>
-                <h5>${comment.commentAuthor}</h5>
-                <h6><span class="glyphicon glyphicon-time"></span>${comment.commentDate}</h6>
-                <h4>${comment.commentContent}</h4>
+                <h5>${commentDTO.commentAuthor}</h5>
+                <h6><span class="glyphicon glyphicon-time"></span>${commentDTO.commentDate}</h6>
+                <h4>${commentDTO.commentContent}</h4>
                 <br>
             </c:forEach>
         </div>
-        <%--<c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">--%>
+        <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
             <div style="float:right;padding-right:16px; padding-bottom: 16px">
                 <form name="news" id="form1" action="/deleteComment" method="post">
                     <input type="hidden" name="${_csrf.parameterName}"
@@ -93,7 +95,7 @@
                     </button>
                 </form>
             </div>
-        <%--</c:if>--%>
+        </c:if>
     </div>
 </div>
 

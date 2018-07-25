@@ -4,6 +4,7 @@ import kz.epam.intlab.dao.DaoException;
 import kz.epam.intlab.dto.UserDTO;
 import kz.epam.intlab.service.Service;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -13,12 +14,9 @@ import java.util.regex.Pattern;
 @Stateless
 public class UserCredentialValidator {
 
+    @EJB
     private Service service;
 
-    @Inject
-    public void setService(Service service) {
-        this.service = service;
-    }
     public List<String> validateUser(UserDTO userDTO, String rePassword) throws DaoException {
 
         List<String> errorMessages = new ArrayList<>();

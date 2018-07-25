@@ -93,4 +93,9 @@ public class ServiceImpl implements Service {
         }
         return userDTO;
     }
+
+    @Override
+    public UserDTO getUserById(int id) throws DaoException {
+        return (UserDTO) userConverter.convertEntityToDTO(userDao.getUserById(id));
+    }
 }

@@ -14,8 +14,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.ejb.EJB;
-
 @Configuration
 @ComponentScan("kz.epam.intlab")
 @EnableWebSecurity
@@ -37,9 +35,11 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().ignoringAntMatchers("/rest/**", "/userWS/**", "/newsWS/**", "/commentWS/**")
+                .and()
                 .authorizeRequests()
-                .antMatchers("/main").permitAll()
-                .antMatchers("/addUpNews", "/deleteNews", "/deleteSelectedNews", "/deleteComment")
+                .antMatchers("/main", "/openSelectedNews").permitAll()
+                .antMatchers("/addUpNews", "/deleteNews", "/deleteComment", "/openEditMode")
                 .access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/addComment").access("hasRole('ROLE_READER')")
                 .and()

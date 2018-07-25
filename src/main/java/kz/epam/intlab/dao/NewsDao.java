@@ -22,6 +22,7 @@ public class NewsDao implements Dao {
 
     private Session session;
 
+    @Override
     public Map<Integer, News> getAllNews() {
         Map<Integer, News> newsMap = new HashMap<>();
         try {
@@ -46,20 +47,6 @@ public class NewsDao implements Dao {
             session = sessionFactoryBean.getSessionFactory().openSession();
             session.beginTransaction();
             News result = (News) session.createQuery("from News where id=:id").setParameter("id", id).uniqueResult();
-            session.getTransaction().commit();
-            session.close();
-            return result;
-        } catch (HibernateException e) {
-            //LOGGER.error("HibernateException in getNewsById", e);
-            throw new DaoException();
-        }
-    }
-
-    public News getNewsByLastId() throws DaoException {
-        try {
-            session = sessionFactoryBean.getSessionFactory().openSession();
-            session.beginTransaction();
-            News result = (News) session.createQuery("select max(NEWS_ID) from News");
             session.getTransaction().commit();
             session.close();
             return result;

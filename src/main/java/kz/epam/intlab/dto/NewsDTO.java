@@ -1,11 +1,11 @@
 package kz.epam.intlab.dto;
 
-import kz.epam.intlab.entity.Comment;
-
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@XmlRootElement
 public class NewsDTO extends ParentDTO {
 
     private int id;
@@ -13,7 +13,7 @@ public class NewsDTO extends ParentDTO {
     private String brief;
     private String content;
     private String date = String.valueOf(new Date());
-    private List<Comment> DTOCommentList = new ArrayList<>();
+    private List<CommentDTO> DTOCommentList = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -55,11 +55,11 @@ public class NewsDTO extends ParentDTO {
         this.date = date;
     }
 
-    public List<Comment> getDTOCommentList() {
+    public List<CommentDTO> getDTOCommentList() {
         return DTOCommentList;
     }
 
-    public void setDTOCommentList(List<Comment> DTOCommentList) {
+    public void setDTOCommentList(List<CommentDTO> DTOCommentList) {
         this.DTOCommentList = DTOCommentList;
     }
 }

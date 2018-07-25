@@ -19,4 +19,5 @@ public interface Service {
     public void deleteComment(int commentId, int newId) throws DaoException;
     public void addUpdateUser(UserDTO userDTO) throws DaoException;
     public UserDTO getUserByEmail(String email) throws DaoException;
+    public UserDTO getUserById(int id) throws DaoException;
 }

@@ -26,7 +26,7 @@ public class UserConverterImpl implements DTOEntityConverter<User, UserDTO> {
         userDTO.setId(user.getId());
         userDTO.setEmail(user.getEmail());
         userDTO.setPassword(user.getPassword());
-        userDTO.setRole(User.Role.READER);
+        userDTO.setRole(user.getRole());
         userDTO.setFirstName(user.getFirstName());
         userDTO.setLastName(user.getLastName());
         return userDTO;

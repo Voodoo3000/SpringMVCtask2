@@ -2,6 +2,9 @@ package kz.epam.intlab.dto;
 
 import kz.epam.intlab.entity.User;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class UserDTO extends ParentDTO {
 
     private int id;

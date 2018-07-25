@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -13,10 +14,10 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("userDetailsServiceImpl")
-public class UserDetailsServiceImpl implements UserDetailsService {
+@Component("userDetailsServiceImpl")
+public class UserDetailsServiceImpl implements UserDetailsService  {
 
-    @Resource(lookup = "kz/epam/intlab/service/ServiceImpl")
+    @Resource(lookup = "java:app/SpringMVCTask2/ServiceImpl")
     private kz.epam.intlab.service.Service service;
 
     @Override

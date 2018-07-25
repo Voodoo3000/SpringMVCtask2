@@ -57,6 +57,8 @@
                 <textarea name="content" rows="20" style="width: 100%; border-radius: 3px">${newsModel.content}</textarea>
                 <button type="submit" class="btn btn-primary" name="newsId" value="${newsModel.id}">Add/Edit news</button>
                 <br><br>
+                <input type="hidden" name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
             </form>
         </div>
     </div>

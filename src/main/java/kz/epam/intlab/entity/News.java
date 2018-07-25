@@ -3,6 +3,7 @@ package kz.epam.intlab.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -76,10 +77,4 @@ public class News extends EntityParent {
         this.commentList = commentList;
     }
 
-    @Override
-    public String toString() {
-        return "News{" +
-                "commentList=" + commentList +
-                '}';
-    }
 }
