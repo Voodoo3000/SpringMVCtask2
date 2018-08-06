@@ -1,7 +1,7 @@
 package kz.epam.intlab.actionServlet.commentAction;
 
 import kz.epam.intlab.dao.DaoException;
-import kz.epam.intlab.service.Service;
+import kz.epam.intlab.service.CommentService;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -15,7 +15,7 @@ import java.io.IOException;
 public class DeleteComment extends HttpServlet {
 
     @EJB
-    private Service service;
+    private CommentService commentService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,7 +27,7 @@ public class DeleteComment extends HttpServlet {
             for (String s : deleteCommentCheckbox) {
                 commentId = Integer.parseInt(s);
                 try {
-                    service.deleteComment(commentId, newsId);
+                    commentService.deleteComment(commentId, newsId);
                 } catch (DaoException e) {
                     e.printStackTrace();
                 }

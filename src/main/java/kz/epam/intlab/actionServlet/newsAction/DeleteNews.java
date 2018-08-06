@@ -1,7 +1,7 @@
 package kz.epam.intlab.actionServlet.newsAction;
 
 import kz.epam.intlab.dao.DaoException;
-import kz.epam.intlab.service.Service;
+import kz.epam.intlab.service.NewsService;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -15,7 +15,7 @@ import java.io.IOException;
 public class DeleteNews extends HttpServlet {
 
     @EJB
-    private Service service;
+    private NewsService newsService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,11 +25,11 @@ public class DeleteNews extends HttpServlet {
                 int id;
                 for (String s : deleteNewsCheckbox) {
                     id = Integer.parseInt(s);
-                    service.deleteNews(id);
+                    newsService.deleteNews(id);
                 }
             } else {
                 int newsIdForDel = Integer.parseInt(req.getParameter("newsIdForDel"));
-                service.deleteNews(newsIdForDel);
+                newsService.deleteNews(newsIdForDel);
             }
         } catch (DaoException e) {
             e.printStackTrace();

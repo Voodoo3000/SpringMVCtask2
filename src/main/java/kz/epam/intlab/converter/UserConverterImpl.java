@@ -21,7 +21,6 @@ public class UserConverterImpl implements DTOEntityConverter<User, UserDTO> {
     }
 
     public UserDTO convertEntityToDTO(User user) {
-
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
         userDTO.setEmail(user.getEmail());

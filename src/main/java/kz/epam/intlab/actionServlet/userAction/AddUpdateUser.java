@@ -2,7 +2,7 @@ package kz.epam.intlab.actionServlet.userAction;
 
 import kz.epam.intlab.dao.DaoException;
 import kz.epam.intlab.dto.UserDTO;
-import kz.epam.intlab.service.Service;
+import kz.epam.intlab.service.UserService;
 import kz.epam.intlab.util.UserCredentialValidator;
 
 import javax.ejb.EJB;
@@ -18,7 +18,7 @@ import java.util.List;
 public class AddUpdateUser extends HttpServlet {
 
     @EJB
-    private Service service;
+    private UserService userService;
 
     @EJB
     private UserCredentialValidator validator;
@@ -46,7 +46,7 @@ public class AddUpdateUser extends HttpServlet {
 
         if (errorMessages.isEmpty()) {
             try {
-                service.addUpdateUser(userDTO);
+                userService.addUpdateUser(userDTO);
                 resp.sendRedirect("/openLoginPage");
             } catch (DaoException e) {
                 e.printStackTrace();

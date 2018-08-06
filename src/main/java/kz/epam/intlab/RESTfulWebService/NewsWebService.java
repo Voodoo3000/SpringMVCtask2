@@ -2,8 +2,7 @@ package kz.epam.intlab.RESTfulWebService;
 
 import kz.epam.intlab.dao.DaoException;
 import kz.epam.intlab.dto.NewsDTO;
-import kz.epam.intlab.entity.News;
-import kz.epam.intlab.service.Service;
+import kz.epam.intlab.service.NewsService;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -20,30 +19,30 @@ import java.util.Map;
 public class NewsWebService {
 
     @EJB
-    private Service service;
+    private NewsService newsService;
 
     @GET
     @Path("/getById/{id}")
     public NewsDTO getById (@PathParam("id") int id) throws DaoException {
-        return service.getNewsById(id);
+        return newsService.getNewsById(id);
     }
 
     @GET
     @Path("/getAll")
-    public Map<Integer, News> getAll(){
-        return service.getAllNews();
+    public Map<Integer, NewsDTO> getAll(){
+        return newsService.getAllNews();
     }
 
     @POST
     @Path("/addUpdate")
     public void addUpdate(NewsDTO newsDTO) throws DaoException {
-        service.addUpdateNews(newsDTO);
+        newsService.addUpdateNews(newsDTO);
     }
 
     @POST
     @Path("/delete/{id}")
     public void delete(@PathParam("id") int id) throws DaoException {
-        service.deleteNews(id);
+        newsService.deleteNews(id);
     }
 
 }

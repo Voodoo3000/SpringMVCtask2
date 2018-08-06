@@ -2,11 +2,10 @@ package kz.epam.intlab.util;
 
 import kz.epam.intlab.dao.DaoException;
 import kz.epam.intlab.dto.UserDTO;
-import kz.epam.intlab.service.Service;
+import kz.epam.intlab.service.UserService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -15,7 +14,7 @@ import java.util.regex.Pattern;
 public class UserCredentialValidator {
 
     @EJB
-    private Service service;
+    private UserService userService;
 
     public List<String> validateUser(UserDTO userDTO, String rePassword) throws DaoException {
 
@@ -29,7 +28,7 @@ public class UserCredentialValidator {
         if (!emailValidResult) {
             errorMessages.add("Invalid email address");
         }
-        if (service.getUserByEmail(userDTO.getEmail()) != null) {
+        if (userService.getUserByEmail(userDTO.getEmail()) != null) {
             errorMessages.add("Entered login is busy");
         }
         if (!passwordValidResult) {

@@ -1,7 +1,7 @@
 package kz.epam.intlab.actionServlet.newsAction;
 
 import kz.epam.intlab.dao.DaoException;
-import kz.epam.intlab.service.Service;
+import kz.epam.intlab.service.NewsService;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -15,13 +15,13 @@ import java.io.IOException;
 public class OpenSelectedNews extends HttpServlet {
 
     @EJB
-    private Service service;
+    private NewsService newsService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("newsId"));
         try {
-            req.setAttribute("newsModel", service.getNewsById(id));
+            req.setAttribute("newsModel", newsService.getNewsById(id));
         } catch (DaoException e) {
             e.printStackTrace();
         }

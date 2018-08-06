@@ -2,7 +2,7 @@ package kz.epam.intlab.RESTfulWebService;
 
 import kz.epam.intlab.dao.DaoException;
 import kz.epam.intlab.dto.UserDTO;
-import kz.epam.intlab.service.Service;
+import kz.epam.intlab.service.UserService;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -18,17 +18,17 @@ import javax.ws.rs.PathParam;
 public class UserWebService {
 
     @EJB
-    private Service service;
+    private UserService userService;
 
     @GET
     @Path("getById/{id}")
     public UserDTO getById(@PathParam("id") int id) throws DaoException {
-        return service.getUserById(id);
+        return userService.getUserById(id);
     }
 
     @POST
     @Path("/addUpdate")
     public void addUpdateUser(UserDTO userDTO) throws DaoException {
-        service.addUpdateUser(userDTO);
+        userService.addUpdateUser(userDTO);
     }
 }

@@ -2,7 +2,7 @@ package kz.epam.intlab.actionServlet.commentAction;
 
 import kz.epam.intlab.dao.DaoException;
 import kz.epam.intlab.dto.CommentDTO;
-import kz.epam.intlab.service.Service;
+import kz.epam.intlab.service.CommentService;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -16,7 +16,7 @@ import java.io.IOException;
 public class AddComment extends HttpServlet {
 
     @EJB
-    private Service service;
+    private CommentService commentService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,7 +28,7 @@ public class AddComment extends HttpServlet {
         commentDTO.setCommentContent(req.getParameter("commentContent"));
 
         try {
-            service.addComment(commentDTO, newsId);
+            commentService.addComment(commentDTO, newsId);
         } catch (DaoException e) {
             e.printStackTrace();
         }

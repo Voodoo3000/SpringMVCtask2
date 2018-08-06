@@ -59,7 +59,7 @@
         </div>
 
         <div class="col-sm-9">
-            <c:forEach items="${newsMap}" var="entry">
+            <c:forEach items="${newsDTOMap}" var="entry">
                 <form method="post" action="/openSelectedNews">
                     <input type="hidden" name="${_csrf.parameterName}"
                            value="${_csrf.token}"/>

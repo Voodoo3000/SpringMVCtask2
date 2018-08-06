@@ -3,7 +3,8 @@ package kz.epam.intlab.RESTfulWebService;
 import kz.epam.intlab.dao.DaoException;
 import kz.epam.intlab.dto.CommentDTO;
 import kz.epam.intlab.dto.NewsDTO;
-import kz.epam.intlab.service.Service;
+import kz.epam.intlab.service.CommentService;
+import kz.epam.intlab.service.NewsService;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -20,12 +21,15 @@ import java.util.List;
 public class CommentWebService {
 
     @EJB
-    private Service service;
+    private NewsService newsService;
+
+    @EJB
+    private CommentService commentService;
 
     @GET
     @Path("/getById/{newsId}/{commentId}")
     public CommentDTO getById (@PathParam("newsId") int newsId, @PathParam("commentId") int commentId) throws DaoException {
-        NewsDTO newsDTO = service.getNewsById(newsId);
+        NewsDTO newsDTO = newsService.getNewsById(newsId);
         CommentDTO chosenCommentDto = null;
         for (CommentDTO commentDTO : newsDTO.getDTOCommentList()) {
             if(commentDTO.getCommentId() == commentId) {
@@ -39,19 +43,19 @@ public class CommentWebService {
     @Path("/getAllByNewsId/{id}")
     public List<CommentDTO> getAll(@PathParam("id") int id) throws DaoException {
         List<CommentDTO> commentDTOList;
-        commentDTOList = service.getNewsById(id).getDTOCommentList();
+        commentDTOList = newsService.getNewsById(id).getDTOCommentList();
         return commentDTOList;
     }
 
     @POST
     @Path("/add")
     public void add(CommentDTO commentDTO) throws DaoException {
-        service.addComment(commentDTO, commentDTO.getNewsId());
+        commentService.addComment(commentDTO, commentDTO.getNewsId());
     }
 
     @POST
     @Path("/delete/{newsId}/{commentId}")
     public void delete(@PathParam("newsId") int newsId, @PathParam("commentId") int commentId) throws DaoException {
-        service.deleteComment(newsId, commentId);
+        commentService.deleteComment(newsId, commentId);
     }
 }

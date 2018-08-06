@@ -16,7 +16,7 @@ public class News extends EntityParent {
     private String title;
     private String brief;
     private String content;
-    private String date;
+    private String date = String.valueOf(new Date());
 
     private List<Comment> commentList = new ArrayList<>();
 

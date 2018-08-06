@@ -2,7 +2,7 @@ package kz.epam.intlab.actionServlet.newsAction;
 
 import kz.epam.intlab.dao.DaoException;
 import kz.epam.intlab.dto.NewsDTO;
-import kz.epam.intlab.service.Service;
+import kz.epam.intlab.service.NewsService;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -16,7 +16,7 @@ import java.io.IOException;
 public class AddUpdateNews extends HttpServlet {
 
     @EJB
-    private Service service;
+    private NewsService newsService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,7 +29,7 @@ public class AddUpdateNews extends HttpServlet {
         newsDTO.setContent(req.getParameter("content"));
 
         try {
-            req.setAttribute("newsModel", service.addUpdateNews(newsDTO));
+            req.setAttribute("newsModel", newsService.addUpdateNews(newsDTO));
         } catch (DaoException e) {
             e.printStackTrace();
         }

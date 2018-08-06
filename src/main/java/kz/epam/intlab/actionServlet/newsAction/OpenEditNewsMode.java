@@ -1,9 +1,8 @@
 package kz.epam.intlab.actionServlet.newsAction;
 
 import kz.epam.intlab.dao.DaoException;
-import kz.epam.intlab.dto.CommentDTO;
 import kz.epam.intlab.dto.NewsDTO;
-import kz.epam.intlab.service.Service;
+import kz.epam.intlab.service.NewsService;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -17,7 +16,7 @@ import java.io.IOException;
 public class OpenEditNewsMode extends HttpServlet {
 
     @EJB
-    private Service service;
+    private NewsService newsService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,7 +24,7 @@ public class OpenEditNewsMode extends HttpServlet {
         NewsDTO newsDTO = null;
         int newsId = Integer.parseInt(req.getParameter("newsId"));
         try {
-            newsDTO = service.getNewsById(newsId);
+            newsDTO = newsService.getNewsById(newsId);
         } catch (DaoException e) {
             e.printStackTrace();
         }

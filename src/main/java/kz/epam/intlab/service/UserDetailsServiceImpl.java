@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import javax.annotation.Resource;
@@ -17,15 +16,15 @@ import java.util.List;
 @Component("userDetailsServiceImpl")
 public class UserDetailsServiceImpl implements UserDetailsService  {
 
-    @Resource(lookup = "java:app/SpringMVCTask2/ServiceImpl")
-    private kz.epam.intlab.service.Service service;
+    @Resource(lookup = "java:app/SpringMVCTask2/UserServiceImpl")
+    private UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         kz.epam.intlab.dto.UserDTO userDTO = null;
         List<GrantedAuthority> listOfAuthority = new ArrayList<>();
         try {
-            userDTO = service.getUserByEmail(email);
+            userDTO = userService.getUserByEmail(email);
         } catch (DaoException e) {
             e.printStackTrace();
         }

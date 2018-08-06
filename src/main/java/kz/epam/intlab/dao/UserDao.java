@@ -8,7 +8,6 @@ import org.hibernate.Session;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 
 @Stateless
 @LocalBean
@@ -20,33 +19,24 @@ public class UserDao {
     private Session session;
 
     public User getUserByEmail(String email) throws DaoException {
-        try {
             session = sessionFactoryBean.getSessionFactory().openSession();
             session.beginTransaction();
             User result = (User) session.createQuery("from User where email=:email").setParameter("email", email).uniqueResult();
             session.getTransaction().commit();
             session.close();
             return result;
-        } catch (HibernateException e) {
-            throw new DaoException();
-        }
     }
 
     public User getUserById(int id) throws DaoException {
-        try {
             session = sessionFactoryBean.getSessionFactory().openSession();
             session.beginTransaction();
             User result = (User) session.createQuery("from User where id=:id").setParameter("id", id).uniqueResult();
             session.getTransaction().commit();
             session.close();
             return result;
-        } catch (HibernateException e) {
-            throw new DaoException();
-        }
     }
 
     public void addUpdateUser(User user) throws DaoException {
-        try {
             session = sessionFactoryBean.getSessionFactory().openSession();
             session.beginTransaction();
             if (user.getId() != 0) {
@@ -54,8 +44,5 @@ public class UserDao {
             } else session.save(user);
             session.getTransaction().commit();
             session.close();
-        } catch (HibernateException e) {
-            throw new DaoException();
-        }
     }
 }
