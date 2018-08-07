@@ -57,7 +57,7 @@ public class UserServiceImplTest {
         //THEN
         verify(mockDao).addUpdateUser(givenUser);
 
-        System.out.println(givenUser.getId() + "; " + givenUser.getFirstName() + "; " + givenUser.getLastName() + "; " + givenUser.getEmail() + "; " + givenUser.getPassword() + "; " + givenUser.getRole());
+
     }
 
     @Test
